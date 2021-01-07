@@ -1,12 +1,12 @@
-class GrahpSimple {
+class GraphSimple {
 
     // Quest a.
-    private int[][] listesAdjacence;
+    private final int[][] listesAdjacence;
     private int[][] matriceAdjacence;
     private boolean estDefinieListe = false;
     private boolean estDefinieMatrice = false; 
 
-    public GrahpSimple(int n) {
+    public GraphSimple(int n) {
         this.listesAdjacence = new int[n][];
     }
 
@@ -57,11 +57,11 @@ class GrahpSimple {
     public void fromMatrix(int[][] matrix) {
         if (!estDefinieListe) {
             int n = matrix.length;
-            for (int i = 0; i < n; i++) {
+            for (int[] ints : matrix) {
                 int[] buffer = new int[n];
                 int k = 0;
                 for (int j = 0; j < n; j++) {
-                    if (matrix[i][j] == 1) {
+                    if (ints[j] == 1) {
                         buffer[k] = (j + 1);
                         k++;
                     }
