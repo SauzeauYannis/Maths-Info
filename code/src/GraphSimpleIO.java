@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 class GraphSimpleIO {
 
-    public static Scanner scanner;
+    private static Scanner scanner;
 
     // Quest a.
     public static void Initialize() {
@@ -11,15 +11,15 @@ class GraphSimpleIO {
 
     // Quest b.
     public static int[][] getMatrix(int n) {
-        int[][] m = new int[n][n];
+        int[][] matrix = new int[n][n];
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                m[i][j] = scanner.nextInt();
+                matrix[i][j] = scanner.nextInt();
             }
         }
 
-        return m;
+        return matrix;
     }
 
     // Quest c.
@@ -43,11 +43,10 @@ class GraphSimpleIO {
 
     // Quest d.
     public static void printMatrix(int[][] matrix) {
-        int n = matrix.length;
-        for (int i = 0; i < n; i++) {
-            System.out.println("");
-            for (int j = 0; j < n; j++) {
-                System.out.println(n + " ");
+        for (int i = 0; i < matrix.length; i++) {
+            System.out.println();
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.print(matrix[i][j] + " ");
             }
         }
     }
@@ -55,9 +54,10 @@ class GraphSimpleIO {
     // Quest e.
     public static void printGraph(int[][] graph) {
         for (int i = 0; i < graph.length; i++) {
-            System.out.println("");
+            System.out.println();
+            System.out.print(i+1 + ": ");
             for (int j = 0; j < graph[i].length; j++) {
-                System.out.println(graph[i][j] + " ");
+                System.out.print(graph[i][j] + " ");
             }
         }
     }
@@ -65,10 +65,12 @@ class GraphSimpleIO {
     // Quest f.
     public static void rawPrintGraph(int[][] graph) {
         for (int i = 0; i < graph.length; i++) {
-            System.out.println(i + " ");
+            System.out.println();
+            System.out.print(i+1 + " ");
             for (int j = 0; j < graph[i].length; j++) {
-                System.out.println(graph[i][j] + " ");
+                System.out.print(graph[i][j] + " ");
             }
+            System.out.print("0");
         }
     }
 
@@ -78,5 +80,5 @@ class GraphSimpleIO {
     }
 
     // Quest h.
-    private GraphSimpleIO() {};
+    private GraphSimpleIO() {}
 }

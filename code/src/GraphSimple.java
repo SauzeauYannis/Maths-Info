@@ -34,8 +34,8 @@ class GraphSimple {
 
     public boolean isEdge(int x, int y) {
         if (isVertex(x)) {
-            for (int sommet : listesAdjacence[x-1]) {
-                if (sommet == y) {
+            for (int vertex : listesAdjacence[x-1]) {
+                if (vertex == y) {
                     return true;
                 }
             }
