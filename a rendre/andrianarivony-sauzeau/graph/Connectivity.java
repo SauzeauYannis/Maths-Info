@@ -27,20 +27,19 @@ public class Connectivity {
     // Exercice 3
 
     public int[] getConnectedComponent() {
-        int r = 1;
-
-        while (Arrays.stream(cc).anyMatch(value -> value == 0)) {
-            if (r == 1) {
-                graphBFS.rootBFSFirst(r);
-            } else {
+        if (this.isConnected()) {
+            Arrays.fill(cc, 1);
+        } else {
+            int r = 1;
+            while (Arrays.stream(cc).anyMatch(value -> value == 0)) {
                 graphBFS.rootBFS(r);
-            }
-            for (int i = 0; i < cc.length; i++) {
-                if (graphBFS.getColor(i+1) == Color.RED && cc[i] == 0) {
-                    cc[i] = r;
+                for (int i = 0; i < cc.length; i++) {
+                    if (graphBFS.getColor(i+1) == Color.RED && cc[i] == 0) {
+                        cc[i] = r;
+                    }
                 }
+                r++;
             }
-            r++;
         }
 
         return cc;
