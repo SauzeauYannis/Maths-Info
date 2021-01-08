@@ -115,13 +115,10 @@ public class BreadthFirstSearch {
     // QUEST G)
 
     public void completeBFS() {
+        this.rootBFSFirst(1);
         for (int i = 1; i <= this.graph.order(); i++) {
             if (this.getColor(i) == Color.GREEN) {
-                if (i == 1) {
-                    this.rootBFSFirst(i);
-                } else {
-                    this.rootBFS(i);
-                }
+                this.rootBFS(i);
             }
         }
     }
