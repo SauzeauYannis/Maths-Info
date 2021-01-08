@@ -1,5 +1,6 @@
 package graph;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 
 public class BreadthFirstSearch {
@@ -109,6 +110,8 @@ public class BreadthFirstSearch {
     public void rootBFSFirst(int r) {
         //Initialise tout les sommets du graphe en vert
         this.initializeColor();
+        Arrays.fill(this.distance, 0);
+        Arrays.fill(this.parent, 0);
         this.rootBFS(r);
     }
 
