@@ -1,4 +1,4 @@
-public class Test {
+public class TestTP2 {
 
     public static void main(String[] args) {
 

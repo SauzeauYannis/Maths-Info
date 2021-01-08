@@ -1,10 +1,13 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-// Exercice 1
+// Exercice 1 & 2
 public class BreadthFirstSearch {
+
+    // Exercice 1
 
     // QUEST A)
 
@@ -124,6 +127,13 @@ public class BreadthFirstSearch {
                 this.rootBFS(i);
             }
         }
+        Arrays.fill(this.color, Color.RED);
+    }
+
+    // Exercice 2
+    public boolean isConnected() {
+        this.rootBFS(1);
+        return Arrays.stream(this.color).allMatch(color -> color == Color.RED);
     }
 
     public static void main(String[] args) {
@@ -211,6 +221,11 @@ public class BreadthFirstSearch {
         graph003BFS.completeBFS();
         System.out.println("graph003 complete BFS:");
         graph003BFS.print();
+
+        // Exercice 2
+        System.out.println("graph000 is connected : " + graph000BFS.isConnected());
+        System.out.println("graph002 is connected : " + graph002BFS.isConnected());
+        System.out.println("graph003 is connected : " + graph003BFS.isConnected());
     }
 
 }
