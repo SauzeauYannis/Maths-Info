@@ -2,7 +2,6 @@ package graph;
 
 import java.util.LinkedList;
 
-// Exercice 1
 public class BreadthFirstSearch {
 
     // Exercice 1
