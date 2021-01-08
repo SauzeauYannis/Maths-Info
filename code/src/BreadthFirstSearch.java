@@ -90,8 +90,6 @@ public class BreadthFirstSearch {
     // QUEST D)
 
     public void rootBFS(int r) {
-        //Initialise tout les sommets du graphe en vert
-        this.initializeColor();
         //Crée une file d'attente F vide
         LinkedList<Integer> F = new LinkedList<>();
         //Ajoute la racine à F
@@ -119,26 +117,63 @@ public class BreadthFirstSearch {
         }
     }
 
+    public void rootBFSFirst(int r) {
+        //Initialise tout les sommets du graphe en vert
+        this.initializeColor();
+        this.rootBFS(r);
+    }
+
     // QUEST G)
 
     public void completeBFS() {
         for (int i = 1; i <= this.graph.order(); i++) {
             if (this.getColor(i) == Color.GREEN) {
-                this.rootBFS(i);
+                if (i == 1) {
+                    this.rootBFSFirst(i);
+                } else {
+                    this.rootBFS(i);
+                }
             }
         }
-        Arrays.fill(this.color, Color.RED);
     }
 
     // Exercice 2
+
     public boolean isConnected() {
-        this.rootBFS(1);
+        this.rootBFSFirst(1);
         return Arrays.stream(this.color).allMatch(color -> color == Color.RED);
+    }
+
+    // Exercice 3
+
+    public int[] getConnectedComponent() {
+        int[] cc = new int[this.graph.order()];
+        Arrays.fill(cc, 0);
+        int r = 1;
+
+        while (Arrays.stream(cc).anyMatch(value -> value == 0)) {
+            if (r == 1) {
+                this.rootBFSFirst(r);
+            } else {
+                this.rootBFS(r);
+            }
+            for (int i = 0; i < this.color.length; i++) {
+                if (this.color[i] == Color.RED && cc[i] == 0) {
+                    cc[i] = r;
+                }
+            }
+            r++;
+        }
+
+        return cc;
     }
 
     public static void main(String[] args) {
 
+        // Exercice 1
+
         // QUEST E)
+
         try {
             GraphSimpleIO.scanner = new Scanner(new File("../graph/graph-000.amatrix"));
         } catch (FileNotFoundException e) {
@@ -153,11 +188,11 @@ public class BreadthFirstSearch {
         graph000.setAdjacencyMatrix(matrix000);
 
         BreadthFirstSearch graph000BFS = new BreadthFirstSearch(graph000);
-        graph000BFS.rootBFS(1);
+        graph000BFS.rootBFSFirst(1);
         System.out.println("graph000 BFS with vertex 1 in root:");
         graph000BFS.print();
         System.out.println();
-        graph000BFS.rootBFS(10);
+        graph000BFS.rootBFSFirst(10);
         System.out.println("graph000 BFS with vertex 10 in root:");
         graph000BFS.print();
         System.out.println();
@@ -178,11 +213,12 @@ public class BreadthFirstSearch {
             graph002.setAdjacencyList(i, graph[i-1]);
         }
         BreadthFirstSearch graph002BFS = new BreadthFirstSearch(graph002);
-        graph002BFS.rootBFS(1);
+        graph002BFS.rootBFSFirst(1);
         System.out.println("graph002 BFS with vertex 1 in root:");
         graph002BFS.print();
 
         // QUEST F)
+
         try {
             GraphSimpleIO.scanner = new Scanner(new File("../graph/graph-003.amatrix"));
         } catch (FileNotFoundException e) {
@@ -197,19 +233,19 @@ public class BreadthFirstSearch {
         graph003.setAdjacencyMatrix(matrix003);
 
         BreadthFirstSearch graph003BFS = new BreadthFirstSearch(graph003);
-        graph003BFS.rootBFS(1);
+        graph003BFS.rootBFSFirst(1);
         System.out.println("graph003 BFS with vertex 1 in root:");
         graph003BFS.print();
         System.out.println();
-        graph003BFS.rootBFS(2);
+        graph003BFS.rootBFSFirst(2);
         System.out.println("graph003 BFS with vertex 2 in root:");
         graph003BFS.print();
         System.out.println();
-        graph003BFS.rootBFS(5);
+        graph003BFS.rootBFSFirst(5);
         System.out.println("graph003 BFS with vertex 5 in root:");
         graph003BFS.print();
         System.out.println();
-        graph003BFS.rootBFS(13);
+        graph003BFS.rootBFSFirst(13);
         System.out.println("graph003 BFS with vertex 13 in root:");
         graph003BFS.print();
         System.out.println();
@@ -218,14 +254,23 @@ public class BreadthFirstSearch {
         // On observe que le graphe a 4 composantes connexes différentes
 
         // QUEST G)
+
         graph003BFS.completeBFS();
         System.out.println("graph003 complete BFS:");
         graph003BFS.print();
 
         // Exercice 2
+
         System.out.println("graph000 is connected : " + graph000BFS.isConnected());
         System.out.println("graph002 is connected : " + graph002BFS.isConnected());
         System.out.println("graph003 is connected : " + graph003BFS.isConnected());
+
+        // Exercice 3
+
+        int[] cc = graph003BFS.getConnectedComponent();
+        for (int i = 0; i < cc.length; i++) {
+            System.out.println("x = " + (i+1) + " | cc(x) = " + cc[i]);
+        }
     }
 
 }
