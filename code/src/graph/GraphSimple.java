@@ -1,6 +1,6 @@
-import java.util.LinkedList;
+package graph;
 
-class GraphSimple {
+public class GraphSimple {
 
     // Quest a.
     private final int[][] adjacencyListsArray;

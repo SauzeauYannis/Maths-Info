@@ -1,12 +1,24 @@
+package graph;
+
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
-class GraphSimpleIO {
+public class GraphSimpleIO {
 
     public static Scanner scanner;
 
     // Quest a.
     public static void Initialize() {
         scanner = new Scanner(System.in);
+    }
+
+    public static void InitializeFromFile(String pathname) {
+        try {
+            scanner = new Scanner(new File(pathname));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     // Quest b.
