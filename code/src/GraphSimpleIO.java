@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 class GraphSimpleIO {
 
-    private static Scanner scanner;
+    public static Scanner scanner;
 
     // Quest a.
     public static void Initialize() {

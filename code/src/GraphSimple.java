@@ -7,15 +7,9 @@ class GraphSimple {
     private int[][] adjacencyMatrix;
     private boolean isAdjacencyListDefined = false;
     private boolean isAdjacencyMatrixDefined = false;
-    private Color[] color;
-    private int[] distance;
-    private int[] parent;
 
     public GraphSimple(int n) {
         this.adjacencyListsArray = new int[n][];
-        this.color = new Color[n];
-        this.distance = new int[n];
-        this.parent = new int[n];
     }
 
     // Quest b.
@@ -103,99 +97,5 @@ class GraphSimple {
             this.isAdjacencyMatrixDefined = true;
         }
         return this.adjacencyMatrix;
-    }
-
-    // QUEST B)
-
-    //COLORS
-    private void setColor(int x, Color c) {
-        this.color[x-1] = c;
-    }
-
-    public void setColorRed (int x) {
-        setColor(x, Color.RED);
-    }
-
-    public void setColorOrange (int x) {
-        setColor(x, Color.ORANGE);
-    }
-
-    public void setColorGreen (int x) {
-        setColor(x, Color.GREEN);
-    }
-
-    public Color getColor (int x) {
-        return color[x-1];
-    }
-
-    //DISTANCE
-    public void setDistance (int x, int dist) {
-        this.distance[x-1] = dist;
-    }
-
-    public int getDistance (int x) {
-        return this.distance[x-1];
-    }
-
-    //PARENT
-    public void setParent (int x, int parent) {
-        if (isVertex(parent)) {
-            this.parent[x-1] = parent;
-        } else {
-            System.out.println("Parent \"" + x + "\" doesn't exist.");
-        }
-    }
-
-    public int getParent (int x) {
-        return this.parent[x-1];
-    }
-
-    // QUEST C)
-
-    public void initializeColor() {
-        for (int i=1; i<=this.order(); i++) {
-            this.setColorGreen(i);
-        }
-    }
-
-    // QUEST D)
-
-    public void widthCourseRoot (int root) {
-        //Initialise tout les sommets du graphe en vert
-        this.initializeColor();
-        //Crée une file d'attente F vide
-        LinkedList<String> F = new LinkedList<>(); //Ca peut pas être une file de type pritimif (int)
-        //Ajoute la racine à F
-        F.addLast(String.valueOf(root));
-        //Initialise la racine
-        this.setDistance(root,0);
-        this.setColorOrange(root);
-        this.setParent(root,0);
-
-        //Boucle principale
-        while (F.peekFirst() != null) {
-            int x = Integer.parseInt(F.pollFirst());
-
-            //Boucle secondaire
-            for (int y : this.getAdjacencyList(x)) {
-                if (this.getColor(y) == Color.GREEN) {
-                    this.setColorOrange(y);
-                    this.setDistance(y,this.getDistance(x)+1);
-                    this.setParent(y,x);
-                    F.addLast(String.valueOf(y));
-                }
-            }
-            this.setColorRed(x);
-        }
-    }
-
-    //QUEST G)
-
-    public void widthCourse() {
-        for (int i=1; i<=this.order(); i++) {
-            if (this.getColor(i) == Color.GREEN) {
-                this.widthCourseRoot(i);
-            }
-        }
     }
 }
