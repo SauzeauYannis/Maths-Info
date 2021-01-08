@@ -86,7 +86,7 @@ public class BreadthFirstSearch {
 
     // QUEST D)
 
-    public void BFSWithRoot(int r) {
+    public void rootBFS(int r) {
         //Initialise tout les sommets du graphe en vert
         this.initializeColor();
         //Crée une file d'attente F vide
@@ -118,10 +118,10 @@ public class BreadthFirstSearch {
 
     // QUEST G)
 
-    public void widthCourse() {
+    public void completeBFS() {
         for (int i = 1; i <= this.graph.order(); i++) {
             if (this.getColor(i) == Color.GREEN) {
-                this.BFSWithRoot(i);
+                this.rootBFS(i);
             }
         }
     }
@@ -136,18 +136,81 @@ public class BreadthFirstSearch {
         }
         int n = GraphSimpleIO.getInt();
         int[][] matrix000 = GraphSimpleIO.getMatrix(n);
+        GraphSimpleIO.printMatrix(matrix000);
+        System.out.println();
 
         GraphSimple graph000 = new GraphSimple(n);
         graph000.setAdjacencyMatrix(matrix000);
 
-        BreadthFirstSearch breadthFirstSearch = new BreadthFirstSearch(graph000);
-        breadthFirstSearch.BFSWithRoot(1);
-        System.out.println("BFS from vertex 1:");
-        breadthFirstSearch.print();
+        BreadthFirstSearch graph000BFS = new BreadthFirstSearch(graph000);
+        graph000BFS.rootBFS(1);
+        System.out.println("graph000 BFS with vertex 1 in root:");
+        graph000BFS.print();
         System.out.println();
-        System.out.println("BFS from vertex 10:");
-        breadthFirstSearch.BFSWithRoot(10);
-        breadthFirstSearch.print();
+        graph000BFS.rootBFS(10);
+        System.out.println("graph000 BFS with vertex 10 in root:");
+        graph000BFS.print();
+        System.out.println();
+
+        try {
+            GraphSimpleIO.scanner = new Scanner(new File("../graph/graph-002.alists"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        n = GraphSimpleIO.getInt();
+        int[][] graph = new int[n][];
+        GraphSimpleIO.getGraph(graph);
+        GraphSimpleIO.printGraph(graph);
+        System.out.println();
+
+        GraphSimple graph002 = new GraphSimple(n);
+        for (int i = 1; i <= n; i++) {
+            graph002.setAdjacencyList(i, graph[i-1]);
+        }
+        BreadthFirstSearch graph002BFS = new BreadthFirstSearch(graph002);
+        graph002BFS.rootBFS(1);
+        System.out.println("graph002 BFS with vertex 1 in root:");
+        graph002BFS.print();
+
+        // QUEST F)
+        try {
+            GraphSimpleIO.scanner = new Scanner(new File("../graph/graph-003.amatrix"));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        n = GraphSimpleIO.getInt();
+        int[][] matrix003 = GraphSimpleIO.getMatrix(n);
+        GraphSimpleIO.printMatrix(matrix003);
+        System.out.println();
+
+        GraphSimple graph003 = new GraphSimple(n);
+        graph003.setAdjacencyMatrix(matrix003);
+
+        BreadthFirstSearch graph003BFS = new BreadthFirstSearch(graph003);
+        graph003BFS.rootBFS(1);
+        System.out.println("graph003 BFS with vertex 1 in root:");
+        graph003BFS.print();
+        System.out.println();
+        graph003BFS.rootBFS(2);
+        System.out.println("graph003 BFS with vertex 2 in root:");
+        graph003BFS.print();
+        System.out.println();
+        graph003BFS.rootBFS(5);
+        System.out.println("graph003 BFS with vertex 5 in root:");
+        graph003BFS.print();
+        System.out.println();
+        graph003BFS.rootBFS(13);
+        System.out.println("graph003 BFS with vertex 13 in root:");
+        graph003BFS.print();
+        System.out.println();
+
+        // Qu'observe-t-on ?
+        // On observe que le graphe a 4 composantes connexes différentes
+
+        // QUEST G)
+        graph003BFS.completeBFS();
+        System.out.println("graph003 complete BFS:");
+        graph003BFS.print();
     }
 
 }
