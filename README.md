@@ -34,7 +34,7 @@ Différentes classes ont étés programmés pour manipuler des graphes.
 
 Vous pouvez nottament faire des parcours en largeur ou bien déterminer les composantes connexes d'un graphe.
 
-Vous pouvez tester le projet dans la classe [Test.jav](https://github.com/SauzeauYannis/Maths-Info/blob/master/code/src/graph/Test.java) prévue à cet effet.
+Vous pouvez tester le projet dans la classe [Test.java](https://github.com/SauzeauYannis/Maths-Info/blob/master/code/src/graph/Test.java) prévue à cet effet.
 
 <a name="fr_cp"/>
 
@@ -73,7 +73,7 @@ Different classes have been programmed to manipulate graphs.
 
 You can, for example, make breadth first search or determine the connectivity of a graph.
 
-You can test the project in the [Test.jav](https://github.com/SauzeauYannis/Maths-Info/blob/master/code/src/graph/Test.java) class provided for this purpose.
+You can test the project in the [Test.java](https://github.com/SauzeauYannis/Maths-Info/blob/master/code/src/graph/Test.java) class provided for this purpose.
 
 <a name="en_sk"/>
 
