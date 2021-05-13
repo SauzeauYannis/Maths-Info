@@ -49,7 +49,7 @@ Vous pouvez tester le projet dans la classe [Test.java](https://github.com/Sauze
 
 ### Résultat
 
-Nous avons obtenu la note de ?/20. (résultat en Février)
+Nous avons obtenu la note de 13/20.
 
 <a name="en"/>
 
@@ -88,4 +88,4 @@ You can test the project in the [Test.java](https://github.com/SauzeauYannis/Mat
 
 ### Result
 
-We obtained a score of ?/20. (result in February)
+We obtained a score of 13/20.
